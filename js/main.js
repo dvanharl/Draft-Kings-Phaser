@@ -27,7 +27,7 @@ var teamAway = "ARI";
 
 window.addEventListener('load', function() {
     PlayableSdk.start(startGame);
-	//console.log(PlayableSdk.cfg.getCountry());
+	console.log(PlayableSdk.cfg.getCountry());
 });
 
 function startGame() {
