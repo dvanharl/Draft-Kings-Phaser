@@ -1,4 +1,4 @@
-var settings = {
+var gameOptions = {
 	preloader_start_countdown:0,
 	preloader_logo:true,
 	banner_clickable_on_show:false,
@@ -19,14 +19,15 @@ var settings = {
 	tutorial:true,
 	max_play_time:120,
 	disclaimer_enable:true,
-	siteLink: 'http://www.google.com/'
+	siteLink: 'http://www.google.com/',
+	"region": "VA"
 };
 var teamHome = "SEA";
 var teamAway = "ARI";
 
 window.addEventListener('load', function() {
     PlayableSdk.start(startGame);
-	console.log(PlayableSdk.cfg.getCountry());
+	//console.log(PlayableSdk.cfg.getCountry());
 });
 
 function startGame() {
