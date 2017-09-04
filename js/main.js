@@ -1,4 +1,4 @@
-var gameOptions = {
+var adInfo = {
 	preloader_start_countdown:0,
 	preloader_logo:true,
 	banner_clickable_on_show:false,
