@@ -1,0 +1,610 @@
+{
+	"ARI": {
+		"abbr": "ARI",
+		"region": "Arizona",
+		"mascot": "Cardinals",
+		"conference": "NFC",
+		"division": "West",
+		"state": "Arizona",
+		"colors": [
+			"ffffff",
+			"97233f"
+		],
+		"rival": "SEA",
+		"roster": [
+			"cPalmer",
+			"dJohnson",
+			"lFitzgerald",
+			"jGresham"
+		]
+	},
+	"ATL": {
+		"abbr": "ATL",
+		"region": "Atlanta",
+		"mascot": "Falcons",
+		"conference": "NFC",
+		"division": "South",
+		"state": "Georgia",
+		"colors": [
+			"000000",
+			"a71930"
+		],
+		"rival": "NO",
+		"roster": [
+			"mRyan",
+			"dFreeman",
+			"jJones",
+			"aHooper"
+		]
+	},
+	"BAL": {
+		"abbr": "BAL",
+		"region": "Baltimore",
+		"mascot": "Ravens",
+		"conference": "AFC",
+		"division": "North",
+		"state": "Maryland",
+		"colors": [
+			"000000",
+			"241773"
+		],
+		"rival": "PIT",
+		"roster": [
+			"jFlacco",
+			"tWest",
+			"jMaclin",
+			"bWatson"
+		]
+	},
+	"BUF": {
+		"abbr": "BUF",
+		"region": "Buffalo",
+		"mascot": "Bills",
+		"conference": "AFC",
+		"division": "East",
+		"state": "New York",
+		"colors": [
+			"ffffff",
+			"c60c30"
+		],
+		"rival": "NE",
+		"roster": [
+			"tTaylor",
+			"lMcCoy",
+			"sWatkins",
+			"cClay"
+		]
+	},
+	"CAR": {
+		"abbr": "CAR",
+		"region": "Carolina",
+		"mascot": "Panthers",
+		"conference": "NFC",
+		"division": "South",
+		"state": "North Carolina",
+		"colors": [
+			"bfc0bf",
+			"0085ca"
+		],
+		"rival": "ATL",
+		"roster": [
+			"cNewton",
+			"cMcCaffrey",
+			"kBenjamin",
+			"gOlsen"
+		]
+	},
+	"CHI": {
+		"abbr": "CHI",
+		"region": "Chicago",
+		"mascot": "Bears",
+		"conference": "NFC",
+		"division": "North",
+		"state": "Illinois",
+		"colors": [
+			"0b162a",
+			"c83803"
+		],
+		"rival": "GB",
+		"roster": [
+			"mGlennon",
+			"jHoward",
+			"cMeredith",
+			"zMiller"
+		]
+	},
+	"CIN": {
+		"abbr": "CIN",
+		"region": "Cincinnati",
+		"mascot": "Bengals",
+		"conference": "AFC",
+		"division": "North",
+		"state": "Ohio",
+		"colors": [
+			"fb4f14",
+			"000000"
+		],
+		"rival": "PIT",
+		"roster": [
+			"aDalton",
+			"jMixon",
+			"aGreen",
+			"tEifert"
+		]
+	},
+	"CLE": {
+		"abbr": "CLE",
+		"region": "Cleveland",
+		"mascot": "Browns",
+		"conference": "AFC",
+		"division": "North",
+		"state": "Ohio",
+		"colors": [
+			"ff3c00",
+			"311d00"
+		],
+		"rival": "PIT",
+		"roster": [
+			"dKizer",
+			"iCrowell",
+			"kBritt",
+			"dNjoku"
+		]
+	},
+	"DAL": {
+		"abbr": "DAL",
+		"region": "Dallas",
+		"mascot": "Cowboys",
+		"conference": "NFC",
+		"division": "East",
+		"state": "Texas",
+		"colors": [
+			"b0b7bc",
+			"002244"
+		],
+		"rival": "PHI",
+		"roster": [
+			"dPrescott",
+			"eElliott",
+			"dBryant",
+			"jWitten"
+		]
+	},
+	"DEN": {
+		"abbr": "DEN",
+		"region": "Denver",
+		"mascot": "Broncos",
+		"conference": "AFC",
+		"division": "West",
+		"state": "Colorado",
+		"colors": [
+			"002244",
+			"fb4f14"
+		],
+		"rival": "NE",
+		"roster": [
+			"pLynch",
+			"cAnderson",
+			"dThomas",
+			"aDerby"
+		]
+	},
+	"DET": {
+		"abbr": "DET",
+		"region": "Detroit",
+		"mascot": "Lions",
+		"conference": "NFC",
+		"division": "North",
+		"state": "Michigan",
+		"colors": [
+			"b0b7bc",
+			"0076b6"
+		],
+		"rival": "GB",
+		"roster": [
+			"mStafford",
+			"tRiddick",
+			"gTate",
+			"eEbron"
+		]
+	},
+	"GB": {
+		"abbr": "GB",
+		"region": "Green Bay",
+		"mascot": "Packers",
+		"conference": "NFC",
+		"division": "North",
+		"state": "Wisconsin",
+		"colors": [
+			"ffb612",
+			"273b33"
+		],
+		"rival": "CHI",
+		"roster": [
+			"aRodgers",
+			"tMontgomery",
+			"jNelson",
+			"mBennett"
+		]
+	},
+	"HOU": {
+		"abbr": "HOU",
+		"region": "Houston",
+		"mascot": "Texans",
+		"conference": "AFC",
+		"division": "South",
+		"state": "Texas",
+		"colors": [
+			"03202f",
+			"a71930"
+		],
+		"rival": "IND",
+		"roster": [
+			"dWatson",
+			"lMiller",
+			"dHopkins",
+			"cFiedorowicz"
+		]
+	},
+	"IND": {
+		"abbr": "IND",
+		"region": "Indianapolis",
+		"mascot": "Colts",
+		"conference": "AFC",
+		"division": "South",
+		"state": "Indiana",
+		"colors": [
+			"ffffff",
+			"002c5f"
+		],
+		"rival": "NE",
+		"roster": [
+			"aLuck",
+			"fGore",
+			"tHilton",
+			"jDoyle"
+		]
+	},
+	"JAX": {
+		"abbr": "JAX",
+		"region": "Jacksonville",
+		"mascot": "Jaguars",
+		"conference": "AFC",
+		"division": "South",
+		"state": "Florida",
+		"colors": [
+			"9f792c",
+			"006778"
+		],
+		"rival": "TEN",
+		"roster": [
+			"bBortles",
+			"lFournette",
+			"aRobinson",
+			"mRivera"
+		]
+	},
+	"KC": {
+		"abbr": "KC",
+		"region": "Kansas City",
+		"mascot": "Chiefs",
+		"conference": "AFC",
+		"division": "West",
+		"state": "Missouri",
+		"colors": [
+			"e31837",
+			"ffb612"
+		],
+		"rival": "DEN",
+		"roster": [
+			"aSmith",
+			"sWare",
+			"tHill",
+			"tKelce"
+		]
+	},
+	"LAC": {
+		"abbr": "LAC",
+		"region": "Los Angeles",
+		"mascot": "Chargers",
+		"conference": "AFC",
+		"division": "West",
+		"state": "California",
+		"colors": [
+			"ffffff",
+			"ffb612"
+		],
+		"rival": "OAK",
+		"roster": [
+			"pRivers",
+			"mGordon",
+			"kAllen",
+			"hHenry"
+		]
+	},
+	"LAR": {
+		"abbr": "LAR",
+		"region": "Los Angeles",
+		"mascot": "Rams",
+		"conference": "NFC",
+		"division": "West",
+		"state": "California",
+		"colors": [
+			"002244",
+			"b3995d"
+		],
+		"rival": "SF",
+		"roster": [
+			"jGoff",
+			"tGurley",
+			"tAustin",
+			"tHigbee"
+		]
+	},
+	"MIA": {
+		"abbr": "MIA",
+		"region": "Miami",
+		"mascot": "Dolphins",
+		"conference": "AFC",
+		"division": "East",
+		"state": "Florida",
+		"colors": [
+			"ffffff",
+			"008e97"
+		],
+		"rival": "NE",
+		"roster": [
+			"mMoore",
+			"jAjayi",
+			"jLandry",
+			"jThomas"
+		]
+	},
+	"MIN": {
+		"abbr": "MIN",
+		"region": "Minnesota",
+		"mascot": "Vikings",
+		"conference": "NFC",
+		"division": "North",
+		"state": "Minnesota",
+		"colors": [
+			"4f2683",
+			"ffc62f"
+		],
+		"rival": "GB",
+		"roster": [
+			"sBradford",
+			"dCook",
+			"sDiggs",
+			"kRudolph"
+		]
+	},
+	"NE": {
+		"abbr": "NE",
+		"region": "New England",
+		"mascot": "Patriots",
+		"conference": "AFC",
+		"division": "East",
+		"state": "Massachusetts",
+		"colors": [
+			"b0b7bc",
+			"c60c30"
+		],
+		"rival": "IND",
+		"roster": [
+			"tBrady",
+			"mGillislee",
+			"bCooks",
+			"rGronkowski"
+		]
+	},
+	"NO": {
+		"abbr": "NO",
+		"region": "New Orleans",
+		"mascot": "Saints",
+		"conference": "NFC",
+		"division": "South",
+		"state": "Louisiana",
+		"colors": [
+			"d3bc8d",
+			"000000"
+		],
+		"rival": "ATL",
+		"roster": [
+			"dBrees",
+			"mIngram",
+			"mThomas",
+			"cFleener"
+		]
+	},
+	"NYG": {
+		"abbr": "NYG",
+		"region": "New York",
+		"mascot": "Giants",
+		"conference": "NFC",
+		"division": "East",
+		"state": "New York",
+		"colors": [
+			"0b2265",
+			"a71930"
+		],
+		"rival": "DAL",
+		"roster": [
+			"eManning",
+			"pPerkins",
+			"oBeckham",
+			"eEngram"
+		]
+	},
+	"NYJ": {
+		"abbr": "NYJ",
+		"region": "New York",
+		"mascot": "Jets",
+		"conference": "AFC",
+		"division": "East",
+		"state": "New York",
+		"colors": [
+			"ffffff",
+			"203731"
+		],
+		"rival": "NE",
+		"roster": [
+			"jMcCown",
+			"bPowell",
+			"rAnderson",
+			"aSeferian-Jenkins"
+		]
+	},
+	"OAK": {
+		"abbr": "OAK",
+		"region": "Oakland",
+		"mascot": "Raiders",
+		"conference": "AFC",
+		"division": "West",
+		"state": "California",
+		"colors": [
+			"a5acaf",
+			"000000"
+		],
+		"rival": "DEN",
+		"roster": [
+			"dCarr",
+			"mLynch",
+			"aCooper",
+			"jCook"
+		]
+	},
+	"PHI": {
+		"abbr": "PHI",
+		"region": "Philadelphia",
+		"mascot": "Eagles",
+		"conference": "NFC",
+		"division": "East",
+		"state": "Pennsylvania",
+		"colors": [
+			"004c54",
+			"a5acaf"
+		],
+		"rival": "DAL",
+		"roster": [
+			"cWentz",
+			"dSproles",
+			"aJeffery",
+			"zErtz"
+		]
+	},
+	"PIT": {
+		"abbr": "PIT",
+		"region": "Pittsburgh",
+		"mascot": "Steelers",
+		"conference": "AFC",
+		"division": "North",
+		"state": "Pennsylvania",
+		"colors": [
+			"000000",
+			"ffb612"
+		],
+		"rival": "BAL",
+		"roster": [
+			"bRoethlisberger",
+			"lBell",
+			"aBrown",
+			"jJames"
+		]
+	},
+	"SEA": {
+		"abbr": "SEA",
+		"region": "Seattle",
+		"mascot": "Seahawks",
+		"conference": "NFC",
+		"division": "West",
+		"state": "Washington",
+		"colors": [
+			"002244",
+			"a5acaf"
+		],
+		"rival": "ARI",
+		"roster": [
+			"rWilson",
+			"eLacy",
+			"dBaldwin",
+			"jGraham"
+		]
+	},
+	"SF": {
+		"abbr": "SF",
+		"region": "San Francisco",
+		"mascot": "49ers",
+		"conference": "NFC",
+		"division": "West",
+		"state": "California",
+		"colors": [
+			"b3995d",
+			"aa0000"
+		],
+		"rival": "SEA",
+		"roster": [
+			"bHoyer",
+			"cHyde",
+			"pGarcon",
+			"vMcDonald"
+		]
+	},
+	"TB": {
+		"abbr": "TB",
+		"region": "Tampa Bay",
+		"mascot": "Buccaneers",
+		"conference": "NFC",
+		"division": "South",
+		"state": "Florida",
+		"colors": [
+			"34302b",
+			"d50a0a"
+		],
+		"rival": "ATL",
+		"roster": [
+			"jWinston",
+			"dMartin",
+			"mEvans",
+			"cBrate"
+		]
+	},
+	"TEN": {
+		"abbr": "TEN",
+		"region": "Tennessee",
+		"mascot": "Titans",
+		"conference": "AFC",
+		"division": "South",
+		"state": "Tennessee",
+		"colors": [
+			"ffffff",
+			"4b92db"
+		],
+		"rival": "IND",
+		"roster": [
+			"mMariota",
+			"dMurray",
+			"rMatthews",
+			"dWalker"
+		]
+	},
+	"WSH": {
+		"abbr": "WSH",
+		"region": "Washington",
+		"mascot": "Redskins",
+		"conference": "NFC",
+		"division": "East",
+		"state": "District of Columbia",
+		"colors": [
+			"5a1414",
+			"ffb612"
+		],
+		"rival": "DAL",
+		"roster": [
+			"kCousins",
+			"cThompson",
+			"tPryor",
+			"jReed"
+		]
+	}
+}
