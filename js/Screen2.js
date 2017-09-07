@@ -1,4 +1,5 @@
 BasicGame.Screen2 = function (game) {
+	this.background;
 	this.playerList;
 	this.chosenPlayers;
 	
@@ -7,16 +8,24 @@ BasicGame.Screen2 = function (game) {
 	this.teamText3;
 	this.screenText1;
 	this.screenText2;
+	this.versus1;
+	this.versus2;
+	this.versus3;
 	
 	this.setPick;
 	
 	this.logo;
 	this.nflpaLogo;
+	
+	this.timer;
+	this.timeLeft;
+	this.timerDisplay;
+	this.landscape;
 };
 
 BasicGame.Screen2.prototype = {
-	init: function (){
-	
+	init: function (timeLeft){
+		this.timeLeft = timeLeft;
 	},
 	
     create: function () {
@@ -79,10 +88,10 @@ BasicGame.Screen2.prototype = {
 		style = {font:'bold 45px',fill:'red'};
 		this.versus1 = this.add.text(400,175,'VS',style);
 		this.versus1.anchor.setTo(.5,.5);
-		this.versus1 = this.add.text(400,275,'VS',style);
-		this.versus1.anchor.setTo(.5,.5);
-		this.versus1 = this.add.text(400,375,'VS',style);
-		this.versus1.anchor.setTo(.5,.5);
+		this.versus2 = this.add.text(400,275,'VS',style);
+		this.versus2.anchor.setTo(.5,.5);
+		this.versus3 = this.add.text(400,375,'VS',style);
+		this.versus3.anchor.setTo(.5,.5);
 		
 		this.logo = this.add.sprite(700,50,'logo');
 		this.logo.anchor.setTo(.5,.5);
@@ -91,11 +100,35 @@ BasicGame.Screen2.prototype = {
 		this.nflpa = this.add.sprite(50,50,'nflpa');
 		this.nflpa.anchor.setTo(.5,.5);
 		this.nflpa.scale.setTo(.02);
+		
+		//Timer to next screen
+		this.timer = this.time.create(false);
+		this.timer.add(settings.max_play_time,function(){
+			PlayableSdk.openClickUrl();
+		},this);
+		style = {font:"36px Arial",fill:"#ffffff"};
+		this.timerDisplay = this.add.text(450,25,'',style);
+		this.timer.start();
+		
+		this.landscape = true;
+		this.orientationUpdate();
+		this.landscape = false;
+		this.orientationUpdate();
+		this.landscape = true;
+		this.orientationUpdate();
+	},
+	
+	update: function () {
+		this.timerUpdate();
+		this.orientationUpdate();
     },
-
-    update: function () {
-		//this.teamCheck();
-    },
+	
+	timerUpdate: function (){
+		min = parseInt(this.timer.duration/60000);
+		sec = parseInt((this.timer.duration%60000)/1000);
+		ms = parseInt((this.timer.duration%1000)/10);
+		this.timerDisplay.setText(min.toString() + ':' + sec.toString() + ':' + ms.toString());
+	},
 	
 	teamCheck: function() {
 		//Check to see if all 
@@ -116,15 +149,53 @@ BasicGame.Screen2.prototype = {
 		}
 	},
 	
-	openLink: function(){
-		window.open(settings.siteLink);
-	},
-	
 	nextScreen: function(){
-		this.state.start('Screen3',true,false, this.chosenPlayers);
+		this.state.start('Screen3',true,false, this.timer.duration, this.chosenPlayers);
 	},
 	
-	render: function() {
-		//this.game.debug.text(this.chosenPlayers,100,25);
-	}
+	orientationUpdate: function() {
+		this.scale.maxHeight = window.innerHeight;
+		//this.scale.maxHeight = document.getElementById("game").offsetHeight;
+		if(this.landscape){
+			this.scale.maxWidth = this.scale.maxHeight *(4/3);
+		}else{
+			this.scale.maxWidth = this.scale.maxHeight *(2/3);
+		}
+		
+		
+		//If window scale hits a certain ratio to switch from portrait to landscape or vice versa, change orientation and adjust sprites accordingly
+		if((window.innerWidth/window.innerHeight) <= (3/4) && this.landscape){
+			this.landscape = false;
+			this.scale.setGameSize(600,900);
+			//Rearrange sprites
+			this.logo.x = 500;
+			this.setPick.x = 300;
+			this.teamText1.x = 150;
+			this.teamText2.x = 150;
+			this.teamText3.x = 150;
+			this.versus1.x = 300;
+			this.versus2.x = 300;
+			this.versus3.x = 300;
+			this.background.x = -200;
+			this.background.y = 300;
+			this.screenText1.x = 300;
+			this.screenText2.x = 300;
+		}else if((window.innerWidth/window.innerHeight) > (3/4) && !this.landscape){
+			this.landscape = true;
+			this.scale.setGameSize(800,600);
+			//Rearrange sprites
+			this.logo.x = 700;
+			this.setPick.x = 400;
+			this.teamText1.x = 200;
+			this.teamText2.x = 200;
+			this.teamText3.x = 200;
+			this.versus1.x = 400;
+			this.versus2.x = 400;
+			this.versus3.x = 400;
+			this.background.x = 0;
+			this.background.y = 0;
+			this.screenText1.x = 400;
+			this.screenText2.x = 400;
+		}
+	},
 };

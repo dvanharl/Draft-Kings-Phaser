@@ -1,37 +1,65 @@
-var adInfo = {
-	preloader_start_countdown:0,
-	preloader_logo:true,
-	banner_clickable_on_show:false,
-	did_interact_time_limit_enabled:true,
-	did_interact_time_limit:0,
-	close_button_property1:1,
-	close_button_property2:1,
-	close_button_property3:1,
-	close_button_property4:1,
-	close_button_animation:0,
-	close_button_time:0,
-	close_button_timer:0,
-	screen1:true,
-	screen1_timer:true,
-	screen2:true,
-	screen3_timer:true,
-	screen3_install_now:true,
-	tutorial:true,
-	max_play_time:120,
-	disclaimer_enable:true,
-	siteLink: 'http://www.google.com/',
-	"region": "VA"
+adInfo.gameOptions = {
+	"configId": 196,
+    "dashboardId": 32,
+	
+	"close_button_property1":"false",
+	"close_button_property2":"false",
+	"close_button_property3":"1",
+	"close_button_property4":"false",
+	"close_button_animation":"0",
+	"close_button_time":"0",
+	"close_button_timer":"0",
+	"screen1":"true",
+	"screen1_timer":"true",
+	"screen2":"true",
+	"screen3_timer":"true",
+	"screen3_install_now":"true",
+	"tutorial":"true",
+	"max_play_time":"120",
+	"disclaimer":"true",
+	//
+	"preloader_start_countdown":"0",
+	"preloader_logo":"true",
+	"banner_clickable_on_show":"false",
+	"did_interact_time_limit_enabled":"true",
+	"did_interact_time_limit":"0",
+	"siteLink": "http://www.google.com/"
 };
-var teamHome = "SEA";
-var teamAway = "ARI";
+
+var settings = {};
+
+var teamHome = "";
+var teamAway = "";
 
 window.addEventListener('load', function() {
     PlayableSdk.start(startGame);
-	console.log(PlayableSdk.cfg.getCountry());
 });
 
 function startGame() {
-	//var game = new Phaser.Game(window.innerWidth *window.devicePixelRatio,window.innerHeight*window.devicePixelRatio, Phaser.CANVAS, 'game' );
+	
+	settings = {
+		preloader_start_countdown: PlayableSdk.cfg.getNumber("preloader_start_countdown",0),
+		preloader_logo: PlayableSdk.cfg.getBoolean("preloader_logo",true),
+		banner_clickable_on_show: PlayableSdk.cfg.getBoolean("banner_clickable_on_show",false),
+		did_interact_time_limit_enabled:PlayableSdk.cfg.getBoolean("did_interact_time_limit_enabled",true),
+		did_interact_time_limit:PlayableSdk.cfg.getNumber("did_interact_time_limit",0),
+		close_button_property1:PlayableSdk.cfg.getBoolean("close_button_property1",false),
+		close_button_property2:PlayableSdk.cfg.getBoolean("close_button_property2",false),
+		close_button_property3:PlayableSdk.cfg.getNumber("close_button_property3",1),
+		close_button_property4:PlayableSdk.cfg.getBoolean("close_button_property4",false),
+		close_button_animation:PlayableSdk.cfg.getNumber("close_button_animation",0),
+		close_button_time:PlayableSdk.cfg.getNumber("close_button_time",0),
+		close_button_timer:PlayableSdk.cfg.getNumber("close_button_timer",0),
+		screen1:PlayableSdk.cfg.getBoolean("screen1",true),
+		screen1_timer:PlayableSdk.cfg.getBoolean("screen1_timer",true),
+		screen2:PlayableSdk.cfg.getBoolean("screen2",true),
+		screen3_timer:PlayableSdk.cfg.getBoolean("screen3_timer",true),
+		screen3_install_now:PlayableSdk.cfg.getBoolean("screen3_install_now",true),
+		tutorial:PlayableSdk.cfg.getBoolean("tutorial",true),
+		max_play_time:PlayableSdk.cfg.getNumber("max_play_time",120),
+		disclaimer:PlayableSdk.cfg.getBoolean("disclaimer",true),
+		siteLink: PlayableSdk.cfg.getString("siteLink","http://www.google.com/")
+	};
 	var game = new Phaser.Game(800,600, Phaser.CANVAS, 'game' );
 
 	
@@ -44,4 +72,18 @@ function startGame() {
 	
 	//Start boot state
 	game.state.start('Boot');
+};
+
+function getWeek(){
+	currentDate = new Date();
+};
+
+function getHomeTeam(){
+	state = PlayableSdk.getRegion();
+	switch(state){
+		case "AL":
+};
+
+function getAwayTeam(homeTeam){
+	
 };

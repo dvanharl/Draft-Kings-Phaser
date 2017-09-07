@@ -8,6 +8,7 @@ BasicGame.Screen1 = function (game) {
 	this.start;
 	
 	this.timer;
+	this.timerDisplay
 	
 	this.logo;
 	
@@ -40,7 +41,9 @@ BasicGame.Screen1.prototype = {
 		tempText.anchor.setTo(.5,.5);
 		this.installNow.addChild(tempText);
 		this.installNow.inputEnabled = true;
-		this.installNow.events.onInputUp.add(this.openLink,this);
+		this.installNow.events.onInputUp.add(function(){
+			PlayableSdk.openClickUrl();
+		},this);
 		
 		
 		//Start Button
@@ -55,12 +58,8 @@ BasicGame.Screen1.prototype = {
 		
 		//Timer to next screen
 		this.timer = this.time.create(false);
-		this.timer.add(30000,function(){
-			this.state.start('Screen2');
-		},this);
-		/*if(this.timerSet){
-			this.timer.start();
-		}*/
+		this.timer.add(settings.screen1_time,this.nextScreen);
+		if(settings.screen1_timer){this.timer.start();} 
 		
 		this.logo = this.add.sprite(700,50,'logo');
 		this.logo.anchor.setTo(.5,.5);
@@ -82,23 +81,12 @@ BasicGame.Screen1.prototype = {
 		/* this.game.debug.text(this.inTutorial,100,25); */
 	},
 	
-	openLink: function(){
-		window.open(settings.siteLink);
-	},
-	
 	nextScreen: function(){
 		this.state.start('Screen2');
-		/*
-		if(settings.screen1){
-			this.state.start('Screen2');
-		}else{
-			this.state.start('Screen3');
-		}*/
 	},
 	
 	orientationUpdate: function() {
 		this.scale.maxHeight = window.innerHeight;
-		//this.scale.maxHeight = document.getElementById("game").offsetHeight;
 		if(this.landscape){
 			this.scale.maxWidth = this.scale.maxHeight *(4/3);
 		}else{
