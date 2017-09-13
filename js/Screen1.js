@@ -8,7 +8,8 @@ BasicGame.Screen1 = function (game) {
 	this.start;
 	
 	this.timer;
-	this.timerDisplay
+	this.screenTimer;
+	this.timerDisplay;
 	
 	this.logo;
 	
@@ -41,8 +42,9 @@ BasicGame.Screen1.prototype = {
 		tempText.anchor.setTo(.5,.5);
 		this.installNow.addChild(tempText);
 		this.installNow.inputEnabled = true;
+		this.installNow.input.useHandCursor = true;
 		this.installNow.events.onInputUp.add(function(){
-			PlayableSdk.openClickUrl();
+			//PlayableSdk.openClickUrl();
 		},this);
 		
 		
@@ -54,16 +56,36 @@ BasicGame.Screen1.prototype = {
 		tempText.anchor.setTo(.5,.5);
 		this.start.addChild(tempText);
 		this.start.inputEnabled = true;
+		this.start.input.useHandCursor = true;
 		this.start.events.onInputUp.add(this.nextScreen,this);
 		
-		//Timer to next screen
-		this.timer = this.time.create(false);
-		this.timer.add(settings.screen1_time,this.nextScreen);
-		if(settings.screen1_timer){this.timer.start();} 
+		if(settings.timer){
+			this.timer = this.time.create(false);
+			this.timer.add(settings.max_play_time * 1000,function(){
+				PlayableSdk.openClickUrl();
+			},this);
+			style = {font:"36px Arial",fill:"#ffffff"};
+			this.timer.start();
+		}
+		this.timerDisplay = this.add.text(650,90,'',style);
+		if(!settings.timer){
+			this.timerDisplay.kill();
+		}
 		
+		//Timer to next screen
+		if(settings.screen1_timer){
+			this.screenTimer = this.time.create(false);
+			this.screenTimer.add(settings.screen1_time,this.nextScreen);
+			this.screenTimer.start();
+		}
+		/*
 		this.logo = this.add.sprite(700,50,'logo');
 		this.logo.anchor.setTo(.5,.5);
 		this.logo.scale.setTo(.1);
+		*/
+		this.nflpa = this.add.sprite(50,50,'nflpa');
+		this.nflpa.anchor.setTo(.5,.5);
+		this.nflpa.scale.setTo(.02);
 			
 		this.landscape = true;
 		this.orientationUpdate();
@@ -74,6 +96,9 @@ BasicGame.Screen1.prototype = {
     },
 
     update: function () {
+		if(settings.timer){
+			this.timerUpdate();
+		}
 		this.orientationUpdate();
     },
 	
@@ -82,7 +107,18 @@ BasicGame.Screen1.prototype = {
 	},
 	
 	nextScreen: function(){
-		this.state.start('Screen2');
+		if(settings.timer){
+			this.state.start('Screen2',true,false, this.timer.duration);
+		}else{
+			this.state.start('Screen2',true,false, 0);
+		}
+	},
+	
+	timerUpdate: function (){
+		min = parseInt(this.timer.duration/60000);
+		sec = parseInt((this.timer.duration%60000)/1000);
+		ms = parseInt((this.timer.duration%1000)/10);
+		this.timerDisplay.setText(min.toString() + ':' + sec.toString() + ':' + ms.toString());
 	},
 	
 	orientationUpdate: function() {
@@ -99,7 +135,9 @@ BasicGame.Screen1.prototype = {
 			this.landscape = false;
 			this.scale.setGameSize(600,900);
 			//Rearrange sprites
-			this.logo.x = 500;
+			////this.logo.x = 500;
+			this.timerDisplay.x = 450;
+			this.timerDisplay.y = 30;
 			this.installNow.x = 150;
 			this.installNow.y = 700;
 			this.start.x = 450;
@@ -110,7 +148,7 @@ BasicGame.Screen1.prototype = {
 			this.landscape = true;
 			this.scale.setGameSize(800,600);
 			//Rearrange sprites
-			this.logo.x = 700;
+			////this.logo.x = 700;
 			this.installNow.x = 200;
 			this.installNow.y = 400;
 			this.start.x = 600;
