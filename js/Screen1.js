@@ -14,6 +14,9 @@ BasicGame.Screen1 = function (game) {
 	this.logo;
 	
 	this.landscape;
+	this.testing;
+	
+	this.closeButton;
 };
 
 BasicGame.Screen1.prototype = {
@@ -23,7 +26,7 @@ BasicGame.Screen1.prototype = {
 	
     create: function () {
 		this.landscape = false;
-		
+		this.testing = 0;
 		this.background = this.add.sprite(0,0,'background1');
 		
 		style = {font:"bold 64px Courier",fill:"#ffffff"};
@@ -44,8 +47,10 @@ BasicGame.Screen1.prototype = {
 		this.installNow.inputEnabled = true;
 		this.installNow.input.useHandCursor = true;
 		this.installNow.events.onInputUp.add(function(){
-			//PlayableSdk.openClickUrl();
+			PlayableSdk.openClickUrl();
 		},this);
+		
+		
 		
 		
 		//Start Button
@@ -86,6 +91,24 @@ BasicGame.Screen1.prototype = {
 		this.nflpa = this.add.sprite(50,50,'nflpa');
 		this.nflpa.anchor.setTo(.5,.5);
 		this.nflpa.scale.setTo(.02);
+		
+		//Close Button
+		this.closeButton = this.add.sprite(50,20,'button');
+		this.closeButton.anchor.setTo(.5,.5);
+		this.closeButton.scale.setTo(.05);
+		style = {font:"bold 200px OpenSans",fill:"#000000"};
+		tempText = this.add.text(0,0,'Close',style);
+		tempText.anchor.setTo(.5,.5);
+		this.closeButton.addChild(tempText);
+		this.closeButton.inputEnabled = true;
+		this.closeButton.input.useHandCursor = true;
+		this.closeButton.events.onInputUp.add(function(){
+			if(window.mraid){
+				window.mraid.close();
+			}else{
+				window.close();
+			}
+		},this);
 			
 		this.landscape = true;
 		this.orientationUpdate();
@@ -100,10 +123,36 @@ BasicGame.Screen1.prototype = {
 			this.timerUpdate();
 		}
 		this.orientationUpdate();
+		if(settings.didInteractTimeLimitEnabled){
+			this.interactUpdate();
+		}
+		this.clickUpdate();
     },
+	clickUpdate: function(){
+		if(this.game.input.activePointer.isDown){
+			if(this.firstClick){
+				this.firstClick = false;
+				if(settings.close_button_property1){
+					this.closeButton.kill();
+				}else if(settings.close_button_property4){
+					
+				}
+			}else if(this.secondClick){
+				this.secondClick = false;
+				if(settings.close_button_property1){
+					this.closeButton.kill();
+				}
+			}
+		}
+	},
 	
-	render: function() {
-		/* this.game.debug.text(this.inTutorial,100,25); */
+	interactUpdate: function(){
+		if(this.game.input.activePointer.isDown){
+			this.testing = this.time.totalElapsedSeconds();
+		}
+		if(this.time.totalElapsedSeconds() - this.testing >= settings.didInteractTimeLimit && !settings.tutorial){
+			
+		}
 	},
 	
 	nextScreen: function(){
@@ -129,9 +178,21 @@ BasicGame.Screen1.prototype = {
 			this.scale.maxWidth = this.scale.maxHeight *(2/3);
 		}
 		
-		
 		//If window scale hits a certain ratio to switch from portrait to landscape or vice versa, change orientation and adjust sprites accordingly
 		if((window.innerWidth/window.innerHeight) <= (3/4) && this.landscape){
+			if(settings.property3 == 2){
+				this.closeButton.x = 50;
+				this.closeButton.y = 25;
+			}else if(settings.property3 == 3){
+				this.closeButton.x = 550;
+				this.closeButton.y = 875;
+			}else if(settings.property3 == 4){
+				this.closeButton.x = 50;
+				this.closeButton.y = 875;
+			}else{
+				this.closeButton.x = 550;
+				this.closeButton.y = 25;
+			}
 			this.landscape = false;
 			this.scale.setGameSize(600,900);
 			//Rearrange sprites
@@ -145,6 +206,19 @@ BasicGame.Screen1.prototype = {
 			this.text1.x = 300;
 			this.text2.x = 300;
 		}else if((window.innerWidth/window.innerHeight) > (3/4) && !this.landscape){
+			if(settings.property3 == 2){
+				this.closeButton.x = 50;
+				this.closeButton.y = 25;
+			}else if(settings.property3 == 3){
+				this.closeButton.x = 550;
+				this.closeButton.y = 575;
+			}else if(settings.property3 == 4){
+				this.closeButton.x = 50;
+				this.closeButton.y = 575;
+			}else{
+				this.closeButton.x = 750;
+				this.closeButton.y = 25;
+			}
 			this.landscape = true;
 			this.scale.setGameSize(800,600);
 			//Rearrange sprites

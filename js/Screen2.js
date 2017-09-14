@@ -30,6 +30,12 @@ BasicGame.Screen2 = function (game) {
 	this.homeTeam;
 	this.awayTeam;
 	
+	this.tutFlag = 0;
+	this.arrow;
+	this.arrow2;
+	this.arrowTween;
+	
+	this.closeButton;
 };
 
 BasicGame.Screen2.prototype = {
@@ -89,6 +95,10 @@ BasicGame.Screen2.prototype = {
 		}
 		this.hp1.inputEnabled = true;
 		this.hp1.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 0){
+				this.tutFlag = 1;
+				this.tutorialUpdate();
+			}
 			if(this.chosenPlayers[0] != this.hp1.frameName){
 				this.chosenPlayers[0] = this.hp1.frameName;
 				this.hp1.tint = 0xffff00;
@@ -107,6 +117,10 @@ BasicGame.Screen2.prototype = {
 		}
 		this.hp2.inputEnabled = true;
 		this.hp2.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 1){
+				this.tutFlag = 2;
+				this.tutorialUpdate();
+			}
 			if(this.chosenPlayers[1] != this.hp2.frameName){
 				this.chosenPlayers[1] = this.hp2.frameName;
 				this.hp2.tint = 0xffff00;
@@ -125,6 +139,10 @@ BasicGame.Screen2.prototype = {
 		}
 		this.hp3.inputEnabled = true;
 		this.hp3.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 2){
+				this.tutFlag = 3;
+				this.tutorialUpdate();
+			}
 			if(this.chosenPlayers[2] != this.hp3.frameName){
 				this.chosenPlayers[2] = this.hp3.frameName;
 				this.hp3.tint = 0xffff00;
@@ -160,6 +178,10 @@ BasicGame.Screen2.prototype = {
 		}
 		this.ap1.inputEnabled = true;
 		this.ap1.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 0){
+				this.tutFlag = 1;
+				this.tutorialUpdate();
+			}
 			if(this.chosenPlayers[0] != this.ap1.frameName){
 				this.chosenPlayers[0] = this.ap1.frameName;
 				this.ap1.tint = 0xffff00;
@@ -178,6 +200,10 @@ BasicGame.Screen2.prototype = {
 		}
 		this.ap2.inputEnabled = true;
 		this.ap2.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 1){
+				this.tutFlag = 2;
+				this.tutorialUpdate();
+			}
 			if(this.chosenPlayers[1] != this.ap2.frameName){
 				this.chosenPlayers[1] = this.ap2.frameName;
 				this.ap2.tint = 0xffff00;
@@ -196,6 +222,10 @@ BasicGame.Screen2.prototype = {
 		}
 		this.ap3.inputEnabled = true;
 		this.ap3.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 2){
+				this.tutFlag = 3;
+				this.tutorialUpdate();
+			}
 			if(this.chosenPlayers[2] != this.ap3.frameName){
 				this.chosenPlayers[2] = this.ap3.frameName;
 				this.ap3.tint = 0xffff00;
@@ -238,6 +268,47 @@ BasicGame.Screen2.prototype = {
 			this.timerDisplay.kill();
 		}
 		
+		
+		
+		//Close Button
+		this.closeButton = this.add.sprite(50,20,'button');
+		this.closeButton.anchor.setTo(.5,.5);
+		this.closeButton.scale.setTo(.05);
+		style = {font:"bold 200px OpenSans",fill:"#000000"};
+		tempText = this.add.text(0,0,'Close',style);
+		tempText.anchor.setTo(.5,.5);
+		this.closeButton.addChild(tempText);
+		this.closeButton.inputEnabled = true;
+		this.closeButton.input.useHandCursor = true;
+		this.closeButton.events.onInputUp.add(function(){
+			if(window.mraid){
+				window.mraid.close();
+			}else{
+				window.close();
+			}
+		},this);
+		
+		//Tutorial
+		if(settings.tutorial){
+			this.hp2.inputEnabled = false;
+			this.hp3.inputEnabled = false;
+			this.ap2.inputEnabled = false;
+			this.ap3.inputEnabled = false;
+			//Arrow
+			this.arrow = this.add.sprite(665, 175, 'arrow');
+			this.arrow.anchor.setTo(.5,.5);
+			this.arrow.scale.setTo(-.2);
+			this.arrowTween = this.add.tween(this.arrow).from({x:(this.arrow.x-20)},500,null,true,0,-1,true);
+			//Arrow 2
+			this.arrow2 = this.add.sprite(240, 175, 'arrow');
+			this.arrow2.anchor.setTo(.5,.5);
+			this.arrow2.scale.setTo(.2);
+			this.arrowTween2 = this.add.tween(this.arrow2).from({x:(this.arrow2.x+20)},500,null,true,0,-1,true);
+			//Blur Focus on first row
+			this.tutFlag = 0
+			this.tutorialUpdate();	
+		}
+		
 		this.landscape = true;
 		this.orientationUpdate();
 		this.landscape = false;
@@ -251,17 +322,47 @@ BasicGame.Screen2.prototype = {
 		if(settings.timer){
 			this.timerUpdate();
 		}
+		
 		this.orientationUpdate();
     },
 	
-	timerUpdate: function (){
+	tutorialUpdate: function(){
+		if(this.landscape){
+			this.arrow.y = 175 + 100*this.tutFlag;
+			this.arrow2.y = 175 + 100*this.tutFlag;
+		}else{
+			this.arrow.y = 175 + 200*this.tutFlag;
+			this.arrow2.y = 175 + 200*this.tutFlag;
+		}
+		for(i=this.tutFlag;i<3;i++){
+			if(i == this.tutFlag){
+				this.homeTeam[i].inputEnabled = true;
+				this.homeTeam[i].tint = 0xffffff;
+				this.homeTeam[i].alpha = 1;
+				this.awayTeam[i].inputEnabled = true;
+				this.awayTeam[i].tint = 0xffffff;
+				this.awayTeam[i].alpha = 1;
+			}else{
+				this.homeTeam[i].inputEnabled = false;
+				this.homeTeam[i].tint = 0x808080;
+				this.homeTeam[i].alpha = .6;
+				this.awayTeam[i].inputEnabled = false;
+				this.awayTeam[i].tint = 0x808080;
+				this.awayTeam[i].alpha = .6;
+			}
+		}
+		
+		
+	},
+	
+	timerUpdate: function(){
 		min = parseInt(this.timer.duration/60000);
 		sec = parseInt((this.timer.duration%60000)/1000);
 		ms = parseInt((this.timer.duration%1000)/10);
 		this.timerDisplay.setText(min.toString() + ':' + sec.toString() + ':' + ms.toString());
 	},
 	
-	teamCheck: function() {
+	teamCheck: function(){
 		//Check to see if all 
 		temp = true;
 		for(i=0;i<3;i++){
@@ -302,6 +403,19 @@ BasicGame.Screen2.prototype = {
 		
 		//If window scale hits a certain ratio to switch from portrait to landscape or vice versa, change orientation and adjust sprites accordingly
 		if((window.innerWidth/window.innerHeight) <= (3/4) && this.landscape){
+			if(settings.property3 == 2){
+				this.closeButton.x = 50;
+				this.closeButton.y = 25;
+			}else if(settings.property3 == 3){
+				this.closeButton.x = 550;
+				this.closeButton.y = 875;
+			}else if(settings.property3 == 4){
+				this.closeButton.x = 50;
+				this.closeButton.y = 875;
+			}else{
+				this.closeButton.x = 550;
+				this.closeButton.y = 25;
+			}
 			this.landscape = false;
 			this.scale.setGameSize(600,900);
 			//Rearrange sprites
@@ -355,6 +469,19 @@ BasicGame.Screen2.prototype = {
 			this.ap3.width = 170;
 			this.ap3.height = 170;
 		}else if((window.innerWidth/window.innerHeight) > (3/4) && !this.landscape){
+			if(settings.property3 == 2){
+				this.closeButton.x = 50;
+				this.closeButton.y = 25;
+			}else if(settings.property3 == 3){
+				this.closeButton.x = 550;
+				this.closeButton.y = 575;
+			}else if(settings.property3 == 4){
+				this.closeButton.x = 50;
+				this.closeButton.y = 575;
+			}else{
+				this.closeButton.x = 750;
+				this.closeButton.y = 25;
+			}
 			this.landscape = true;
 			this.scale.setGameSize(800,600);
 			//Rearrange sprites

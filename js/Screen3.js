@@ -60,6 +60,9 @@ BasicGame.Screen3.prototype = {
 		style = {font:"12px Arial",fill:"#ffffff"};
 		this.disclaimer = this.add.text(400,585,'*Eligibilty Restrictions Apply. See Website for Details.',style);
 		this.disclaimer.anchor.setTo(.5,.5);
+		if(!settings.disclaimer){
+			this.disclaimer.kill();
+		}
 		this.playFree = this.add.sprite(400,525,'football');
 		this.playFree.anchor.setTo(.5,.5);
 		this.playFree.animations.add('show',null,8);

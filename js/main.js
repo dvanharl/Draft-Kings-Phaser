@@ -15,13 +15,15 @@ adInfo.gameOptions = {
 	"tutorial":"true",
 	"max_play_time":"120",
 	"disclaimer":"true",
-	//
+	//Universal Settings
+	"CloseButtonTime":"10",
+	"CloseButtonTimer":"true",
+	"countDownCloseButton":"true",
 	"preloader_start_countdown":"0",
 	"preloader_logo":"true",
 	"banner_clickable_on_show":"false",
 	"did_interact_time_limit_enabled":"true",
-	"did_interact_time_limit":"0",
-	"siteLink": "http://www.google.com/"
+	"did_interact_time_limit":"0"
 };
 
 var teams = {
