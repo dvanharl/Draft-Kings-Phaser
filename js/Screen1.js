@@ -29,10 +29,10 @@ BasicGame.Screen1.prototype = {
 		this.testing = 0;
 		this.background = this.add.sprite(0,0,'background1');
 		
-		style = {font:"bold 64px Courier",fill:"#ffffff"};
+		style = {font:"bold 64px Arial Black",fill:"#ffffff"};
 		this.text1 = this.add.text(400,225,'WIN $1,000,000',style);
 		this.text1.anchor.setTo(.5,.5);
-		style = {font:"36px Arial",fill:"#ffffff"};
+		style = {font:"36px Impact",fill:"#ffffff"};
 		this.text2 = this.add.text(400,300,'Build your team now!',style);
 		this.text2.anchor.setTo(.5,.5);
 		
@@ -40,7 +40,7 @@ BasicGame.Screen1.prototype = {
 		this.installNow = this.add.sprite(200,400,'button');
 		this.installNow.anchor.setTo(.5,.5);
 		this.installNow.scale.setTo(.2);
-		style = {font:"180px OpenSans",fill:"#000000"};
+		style = {font:"180px Impact",fill:"#000000"};
 		tempText = this.add.text(0,0,'Install Now',style);
 		tempText.anchor.setTo(.5,.5);
 		this.installNow.addChild(tempText);
@@ -49,7 +49,9 @@ BasicGame.Screen1.prototype = {
 		this.installNow.events.onInputUp.add(function(){
 			PlayableSdk.openClickUrl();
 		},this);
-		
+		if(!settings.install_now_button){
+			this.installNow.kill();
+		}
 		
 		
 		
@@ -63,6 +65,7 @@ BasicGame.Screen1.prototype = {
 		this.start.inputEnabled = true;
 		this.start.input.useHandCursor = true;
 		this.start.events.onInputUp.add(this.nextScreen,this);
+		this.startTween = this.add.tween(this.start.scale).to({x:.22,y:.2},400,null,true,0,-1,true);
 		
 		if(settings.timer){
 			this.timer = this.time.create(false);

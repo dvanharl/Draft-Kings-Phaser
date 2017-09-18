@@ -13,6 +13,7 @@ adInfo.gameOptions = {
 	"timer":"true",
 	"install_now_button":"true",
 	"tutorial":"true",
+	"tutorial_arrows":"true",
 	"max_play_time":"120",
 	"disclaimer":"true",
 	//Universal Settings
@@ -1868,11 +1869,6 @@ function getMatch(week,region){
 var week = 0;
 function startGame() {
 	settings = {
-		preloader_start_countdown: PlayableSdk.cfg.getNumber("preloader_start_countdown",0),
-		preloader_logo: PlayableSdk.cfg.getBoolean("preloader_logo",true),
-		banner_clickable_on_show: PlayableSdk.cfg.getBoolean("banner_clickable_on_show",false),
-		did_interact_time_limit_enabled:PlayableSdk.cfg.getBoolean("did_interact_time_limit_enabled",true),
-		did_interact_time_limit:PlayableSdk.cfg.getNumber("did_interact_time_limit",0),
 		close_button_property1:PlayableSdk.cfg.getBoolean("close_button_property1",false),
 		close_button_property2:PlayableSdk.cfg.getBoolean("close_button_property2",false),
 		close_button_property3:PlayableSdk.cfg.getNumber("close_button_property3",1),
@@ -1887,8 +1883,19 @@ function startGame() {
 		timer:PlayableSdk.cfg.getBoolean("timer",true),
 		install_now_button:PlayableSdk.cfg.getBoolean("install_now_button",true),
 		tutorial:PlayableSdk.cfg.getBoolean("tutorial",true),
+		tutorial_arrows:PlayableSdk.cfg.getBoolean("tutorial_arrows",true),
 		max_play_time:PlayableSdk.cfg.getNumber("max_play_time",30),
 		disclaimer:PlayableSdk.cfg.getBoolean("disclaimer",true),
+		
+		//Universal
+		CloseButtonTime: PlayableSdk.cfg.getNumber("CloseButtonTime",10),
+		CloseButtonTimer: PlayableSdk.cfg.getBoolean("CloseButtonTimer",true),
+		countDownCloseButton: PlayableSdk.cfg.getBoolean("countDownCloseButton",true),
+		preloader_start_countdown: PlayableSdk.cfg.getNumber("preloader_start_countdown",0),
+		preloader_logo: PlayableSdk.cfg.getBoolean("preloader_logo",true),
+		banner_clickable_on_show: PlayableSdk.cfg.getBoolean("banner_clickable_on_show",false),
+		did_interact_time_limit_enabled:PlayableSdk.cfg.getBoolean("did_interact_time_limit_enabled",true),
+		did_interact_time_limit:PlayableSdk.cfg.getNumber("did_interact_time_limit",0)
 	};
 	var game = new Phaser.Game(800,600, Phaser.CANVAS, 'game' );
 	week = getWeek();
@@ -1899,11 +1906,9 @@ function startGame() {
 	homeTeam = matchTeams[1];
 	homeP1 = teams[homeTeam].roster[0];
 	homeP2 = teams[homeTeam].roster[1];
-	homeP3 = teams[homeTeam].roster[2];
 	awayTeam = matchTeams[0];
 	awayP1 = teams[awayTeam].roster[0];
 	awayP2 = teams[awayTeam].roster[1];
-	awayP3 = teams[awayTeam].roster[2];
 	
 	//Add Game States
 	game.state.add('Boot', BasicGame.Boot);

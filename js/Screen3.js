@@ -20,31 +20,38 @@ BasicGame.Screen3 = function (game) {
 	this.nflpa;
 	this.p1;
 	this.p2;
-	this.p3;
 	
 	this.bar1;
 	this.bar2;
-	this.bar3;
+	
+	this.landscape
 };
 
 BasicGame.Screen3.prototype = {
-	init: function (timeLeft,team){
+	init: function (timeLeft,team,colors){
 		this.timeLeft = timeLeft
 		this.team = team;
+		this.colors = colors;
 	},
 	
     create: function () {
 		this.background = this.add.sprite(0,0,'background2');
 		this.background.anchor.setTo(.5,0);
+		if(settings.banner_clickable_on_show){
+			this.background.inputEnabled = true;
+			this.background.events.onInputUp.add(function(){
+				PlayableSdk.openClickUrl();
+			},this);
+		}
 		
-		style = {font:"bold 22px Arial",fill:"#ffffff",wordWrap:true, wordWrapWidth:this.background.width*0.3, align:"center"};
+		style = {font:"bold 22px Impact",fill:"#ffffff",wordWrap:true, wordWrapWidth:this.background.width*0.3, align:"center"};
 		this.endText3 = this.add.text(400,460,'FREE Entry to a fantasy sports contest with your first deposit!',style);
 		this.endText3.anchor.setTo(.5,.5);
 		
 		if(settings.timer){
 			this.timer = this.time.create(false);
 			this.timer.add(this.timeLeft,function(){
-				//PlayableSdk.openClickUrl();
+				PlayableSdk.openClickUrl();
 			},this);
 			style = {font:"36px Arial",fill:"#ffffff"};
 			this.timer.start();
@@ -67,11 +74,13 @@ BasicGame.Screen3.prototype = {
 		this.playFree.anchor.setTo(.5,.5);
 		this.playFree.animations.add('show',null,8);
 		this.playFree.animations.play('show');
-		this.playFree.inputEnabled = true;
-		this.playFree.input.useHandCursor = true;
-		this.playFree.events.onInputUp.add(function(){
-			PlayableSdk.openClickUrl();
-		},this);
+		if(settings.banner_clickable_on_show){
+			this.playFree.inputEnabled = true;
+			this.playFree.input.useHandCursor = true;
+			this.playFree.events.onInputUp.add(function(){
+				PlayableSdk.openClickUrl();
+			},this);
+		}
 		
 		//Role position text
 		style = {font:"bold 18px Arial",fill:"#ffffff"};
@@ -79,23 +88,27 @@ BasicGame.Screen3.prototype = {
 		this.teamText1.anchor.setTo(1,.5);
 		this.teamText2 = this.add.text(200,275,'Running Back',style);
 		this.teamText2.anchor.setTo(1,.5);
-		this.teamText3 = this.add.text(200,375,'Wide Receiver',style);
-		this.teamText3.anchor.setTo(1,.5);
 		
 		//Players
-		console.log(this.team);
-		this.p1 = this.add.sprite(300,175,'playerHeadshots',this.team[0]);
+		this.f1 = this.add.sprite(275,175,'frame');
+		this.f1.width = 150;
+		this.f1.height = 150;
+		this.f1.anchor.setTo(.5,.5);
+		this.f1.tint = this.colors[0];
+		this.p1 = this.add.sprite(275,175,'playerHeadshots',this.team[0]);
 		this.p1.anchor.setTo(.5,.5);
-		this.p1.width = 100;
-		this.p1.height = 70;
-		this.p2 = this.add.sprite(300,275,'playerHeadshots',this.team[1]);
+		this.p1.width = 150;
+		this.p1.height = 120;
+		
+		this.f2 = this.add.sprite(275,75,'frame');
+		this.f2.width = 150;
+		this.f2.height = 150;
+		this.f2.anchor.setTo(.5,.5);
+		this.f2.tint = this.colors[1];
+		this.p2 = this.add.sprite(275,275,'playerHeadshots',this.team[1]);
 		this.p2.anchor.setTo(.5,.5);
-		this.p2.width = 100;
-		this.p2.height = 70;
-		this.p3 = this.add.sprite(300,375,'playerHeadshots',this.team[2]);
-		this.p3.anchor.setTo(.5,.5);
-		this.p3.width = 100;
-		this.p3.height = 70;
+		this.p2.width = 150;
+		this.p2.height = 120;
 		
 		//Logos
 		this.logo = this.add.sprite(700,50,'logo');
@@ -106,19 +119,12 @@ BasicGame.Screen3.prototype = {
 		this.nflpa.anchor.setTo(.5,.5);
 		this.nflpa.scale.setTo(.02);
 		
-		this.landscape = true;
-		this.orientationUpdate();
-		this.landscape = false;
-		this.orientationUpdate();
-		this.landscape = true;
-		this.orientationUpdate();
-		
 		//Bars
-		style = {font:"40px Arial",fill:"#ffffff"};
+		style = {font:"40px Impact",fill:"#ffffff"};
 		this.bar1 = this.add.sprite(575, 175,'bar');
 		this.bar1.anchor.setTo(.5,.5);
 		this.bar1.scale.setTo(.4);
-		tempInt = this.rnd.integerInRange(0,100)
+		tempInt = this.rnd.integerInRange(30,100)
 		temp = this.add.text(0,0,tempInt+'%');
 		temp.anchor.setTo(.5,.5);
 		if(tempInt > 35){
@@ -143,20 +149,13 @@ BasicGame.Screen3.prototype = {
 		this.bar2.addChild(temp);
 		temp = this.add.text(-400,-80,'Selected to win',style);
 		this.bar2.addChild(temp);
-		this.bar3 = this.add.sprite(575, 375,'bar');
-		this.bar3.anchor.setTo(.5,.5);
-		this.bar3.scale.setTo(.4);
-		tempInt = this.rnd.integerInRange(0,100)
-		temp = this.add.text(0,0,tempInt+'%');
-		temp.anchor.setTo(.5,.5);
-		if(tempInt > 35){
-			this.bar3.tint = 0x32cd32;
-		}else{
-			this.bar3.tint = 0xff0000;
-		}
-		this.bar3.addChild(temp);
-		temp = this.add.text(-400,-80,'Selected to win',style);
-		this.bar3.addChild(temp);
+		
+		this.landscape = true;
+		this.orientationUpdate();
+		this.landscape = false;
+		this.orientationUpdate();
+		this.landscape = true;
+		this.orientationUpdate();
     },
 
     update: function () {
@@ -191,32 +190,38 @@ BasicGame.Screen3.prototype = {
 			this.logo.x = 500;
 			this.endText3.x = 300;
 			this.endText3.y = 740;
+			this.endText3.fontSize = 18;
 			this.teamText1.anchor.setTo(.5,.5);
 			this.teamText1.x = 300;
-			this.teamText1.y = 150;
+			this.teamText1.y = 250;
 			this.teamText2.anchor.setTo(.5,.5);
 			this.teamText2.x = 300;
-			this.teamText2.y = 350;
-			this.teamText3.anchor.setTo(.5,.5);
-			this.teamText3.x = 300;
-			this.teamText3.y = 550;
+			this.teamText2.y = 550;
 			this.playFree.x = 300;
 			this.playFree.y = 825;
 			this.disclaimer.x = 300;
 			this.disclaimer.y = 885;
 			this.timerDisplay.x = 450;
-			this.p1.x = 175;
-			this.p1.y = 200;
+			this.p1.x = 125;
+			this.p1.y = 300;
 			this.p1.width = 170;
 			this.p1.height = 170;
-			this.p2.x = 175;
-			this.p2.y = 400;
+			this.p2.x = 125;
+			this.p2.y = 600;
 			this.p2.width = 170;
 			this.p2.height = 170;
-			this.p3.x = 175;
-			this.p3.y = 600;
-			this.p3.width = 170;
-			this.p3.height = 170;
+			this.bar1.x = 400;
+			this.bar2.x = 400;
+			this.bar1.y = 300;
+			this.bar2.y = 600;
+			this.f1.x = 125;
+			this.f1.y = 300;
+			this.f2.x = 125;
+			this.f2.y = 600;
+			this.f1.width = 200;
+			this.f1.height = 200;
+			this.f2.width = 200;
+			this.f2.height = 200;
 		}else if((window.innerWidth/window.innerHeight) > (3/4) && !this.landscape){
 			this.landscape = true;
 			this.scale.setGameSize(800,600);
@@ -226,30 +231,35 @@ BasicGame.Screen3.prototype = {
 			this.endText3.y = 450;
 			this.teamText1.anchor.setTo(1,.5);
 			this.teamText1.x = 200;
-			this.teamText1.y = 175;
+			this.teamText1.y = 200;
 			this.teamText2.anchor.setTo(1,.5);
 			this.teamText2.x = 200;
-			this.teamText2.y = 275;
-			this.teamText3.anchor.setTo(1,.5);
-			this.teamText3.x = 200;
-			this.teamText3.y = 375;
+			this.teamText2.y = 350;
 			this.playFree.x = 400;
 			this.playFree.y = 525;
 			this.disclaimer.x = 400;
 			this.disclaimer.y = 585;
 			this.timerDisplay.x = 650;
+			this.bar1.x = 575;
+			this.bar1.y = 200;
+			this.bar2.x = 575;
+			this.bar2.y = 350;
 			this.p1.x = 325;
-			this.p1.y = 175;
+			this.p1.y = 200;
 			this.p1.width = 100;
 			this.p1.height = 80;
 			this.p2.x = 325;
-			this.p2.y = 275;
+			this.p2.y = 350;
 			this.p2.width = 100;
 			this.p2.height = 80;
-			this.p3.x = 325;
-			this.p3.y = 375;
-			this.p3.width = 100;
-			this.p3.height = 80;
+			this.f1.x = 325;
+			this.f2.x = 325;
+			this.f1.y = 200;
+			this.f2.y = 350;
+			this.f1.width = 100;
+			this.f1.height = 100;
+			this.f2.width = 100;
+			this.f2.height = 100;
 		}
 	},
 };
