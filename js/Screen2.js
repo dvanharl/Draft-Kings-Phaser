@@ -409,6 +409,15 @@ BasicGame.Screen2.prototype = {
 		if(settings.tutorial){
 			this.hp2.inputEnabled = false;
 			this.ap2.inputEnabled = false;
+			style = {font:"bold 25px Arial Black",fill:"#ffff00"};
+			this.tt = this.add.text(400,135, "Tap to select a player",style);
+			this.tt.anchor.setTo(.5,.5);
+			this.tt.alpha = .75;
+			//Text
+			if(!settings.tutorial_text){
+				this.tt.kill();
+			}
+			
 			//Arrow
 			this.arrow = this.add.sprite(665, 175, 'arrow');
 			this.arrow.anchor.setTo(.5,.5);
@@ -446,6 +455,9 @@ BasicGame.Screen2.prototype = {
 		if(!settings.tutorial_arrows){
 			this.arrow.kill();
 			this.arrow2.kill();
+		}
+		if(this.tutFlag > 0){
+			this.tt.kill();
 		}
 		if(this.tutFlag == 2){
 			this.arrow.kill();

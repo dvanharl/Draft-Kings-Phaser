@@ -14,6 +14,7 @@ adInfo.gameOptions = {
 	"install_now_button":"true",
 	"tutorial":"true",
 	"tutorial_arrows":"true",
+	"tutorial_text":"true",
 	"max_play_time":"120",
 	"disclaimer":"true",
 	//Universal Settings
@@ -1884,6 +1885,7 @@ function startGame() {
 		install_now_button:PlayableSdk.cfg.getBoolean("install_now_button",true),
 		tutorial:PlayableSdk.cfg.getBoolean("tutorial",true),
 		tutorial_arrows:PlayableSdk.cfg.getBoolean("tutorial_arrows",true),
+		tutorial_text:PlayableSdk.cfg.getBoolean("tutorial_text",true),
 		max_play_time:PlayableSdk.cfg.getNumber("max_play_time",30),
 		disclaimer:PlayableSdk.cfg.getBoolean("disclaimer",true),
 		
