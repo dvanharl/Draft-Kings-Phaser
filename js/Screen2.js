@@ -119,6 +119,29 @@ BasicGame.Screen2.prototype = {
 			}
 			this.teamCheck();
 		},this);
+		this.hp1.inputEnabled = true;
+		this.hp1.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 0){
+				this.tutFlag = 1;
+				this.tutorialUpdate();
+			}
+			if(this.chosenPlayers[0] != this.hp1.frameName){
+				this.chosenPlayers[0] = this.hp1.frameName;
+				this.chosenColors[0] = hColor;
+				this.hp1.tint = 0xffff00;
+				this.ap1.tint = 0x696969;
+				this.hf1.tint = 0xccffcc;
+				this.af1.tint = 0x808080;
+			}else{
+				this.chosenPlayers[0] = null;
+				this.chosenColors[0] = null;
+				this.hp1.tint = 0xffffff;
+				this.ap1.tint = 0xffffff
+				this.hf1.tint = hColor;
+				this.af1.tint = aColor;
+			}
+			this.teamCheck();
+		},this);
 		
 		this.hf2 = this.add.sprite(325,275,'frame');
 		this.hf2.width = 100;
@@ -132,6 +155,29 @@ BasicGame.Screen2.prototype = {
 		}
 		this.hf2.inputEnabled = true;
 		this.hf2.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 1){
+				this.tutFlag = 2;
+				this.tutorialUpdate();
+			}
+			if(this.chosenPlayers[1] != this.hp2.frameName){
+				this.chosenPlayers[1] = this.hp2.frameName;
+				this.chosenColors[1] = hColor;
+				this.hp2.tint = 0xffff00;
+				this.ap2.tint = 0x696969;
+				this.hf2.tint = 0xccffcc;
+				this.af2.tint = 0x808080;
+			}else{
+				this.chosenPlayers[1] = null;
+				this.chosenColors[1] = null;
+				this.hp2.tint = 0xffffff;
+				this.ap2.tint = 0xffffff;
+				this.hf2.tint = hColor;
+				this.af2.tint = aColor;
+			}
+			this.teamCheck();
+		},this);
+		this.hp2.inputEnabled = true;
+		this.hp2.events.onInputDown.add(function(){
 			if(settings.tutorial && this.tutFlag == 1){
 				this.tutFlag = 2;
 				this.tutorialUpdate();
@@ -224,6 +270,29 @@ BasicGame.Screen2.prototype = {
 			}
 			this.teamCheck();
 		},this);
+		this.ap1.inputEnabled = true;
+		this.ap1.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 0){
+				this.tutFlag = 1;
+				this.tutorialUpdate();
+			}
+			if(this.chosenPlayers[0] != this.ap1.frameName){
+				this.chosenPlayers[0] = this.ap1.frameName;
+				this.chosenColors[0] = aColor;
+				this.ap1.tint = 0xffff00;
+				this.hp1.tint = 0x696969;
+				this.af1.tint = 0xccffcc;
+				this.hf1.tint = 0x808080;
+			}else{
+				this.chosenPlayers[0] = null;
+				this.chosenColors[1] = null;
+				this.ap1.tint = 0xffffff;
+				this.hp1.tint = 0xffffff;
+				this.af1.tint = aColor;
+				this.hf1.tint = hColor;
+			}
+			this.teamCheck();
+		},this);
 		this.af2 = this.add.sprite(575,275,'frame');
 		this.af2.width = 100;
 		this.af2.height = 100;
@@ -236,6 +305,29 @@ BasicGame.Screen2.prototype = {
 		}
 		this.af2.inputEnabled = true;
 		this.af2.events.onInputDown.add(function(){
+			if(settings.tutorial && this.tutFlag == 1){
+				this.tutFlag = 2;
+				this.tutorialUpdate();
+			}
+			if(this.chosenPlayers[1] != this.ap2.frameName){
+				this.chosenPlayers[1] = this.ap2.frameName;
+				this.chosenColors[1] = aColor;
+				this.ap2.tint = 0xffff00;
+				this.hp2.tint = 0x696969;
+				this.af2.tint = 0xccffcc;
+				this.hf2.tint = 0x808080;
+			}else{
+				this.chosenPlayers[1] = null;
+				this.chosenColors[1] = null;
+				this.ap2.tint = 0xffffff;
+				this.hp2.tint = 0xffffff;
+				this.af2.tint = aColor;
+				this.hf2.tint = hColor;
+			}
+			this.teamCheck();
+		},this);
+		this.ap2.inputEnabled = true;
+		this.ap2.events.onInputDown.add(function(){
 			if(settings.tutorial && this.tutFlag == 1){
 				this.tutFlag = 2;
 				this.tutorialUpdate();
